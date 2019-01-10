@@ -15,12 +15,12 @@ class Pokemon
     end
 
     def self.find(p_id, db)
-      poke = db.execute("SELECT * FROM pokemon WHERE id = ?", p_id).flatten
+      poke = db.execute("SELECT * FROM pokemon WHERE id = ?", p_id).first
       Pokemon.new(id: poke[0], name: poke[1], type: poke[2], hp:poke[3])
     end
 
     def alter_hp(new_hp, db)
-      health = db.execute("SELECT hp FROM pokemon WHERE id = ?", self.id).flatten
+      health = db.execute("SELECT hp FROM pokemon WHERE id = ?", self.id).first
       binding.pry
       damage = (health - new_hp)
       db.execute("UPDATE pokemon SET hp = (hp - ?) WHERE id = ?", damage, self.id)
