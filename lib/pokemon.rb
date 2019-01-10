@@ -20,7 +20,7 @@ class Pokemon
     end
 
     def alter_hp(new_hp, db)
-      health = db.execute("SELECT hp FROM pokemon WHERE id = ?", self.id).first
+      health = db.execute("SELECT hp FROM pokemon WHERE id = ?", self.id).flatten.first
       #binding.pry
       damage = (health - new_hp)
       db.execute("UPDATE pokemon SET hp = (hp - ?) WHERE id = ?", damage, self.id)
