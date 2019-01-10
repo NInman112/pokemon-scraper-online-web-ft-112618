@@ -21,7 +21,7 @@ class Pokemon
 
     def alter_hp(new_hp, db)
       damage = (60 - new_hp)
-      db.execute("UPDATE pokemon SET hp = (hp - ?) WHERE id = ?", new_hp, self.id)
+      db.execute("UPDATE pokemon SET hp = (hp - ?) WHERE id = ?", damage, self.id)
       #binding.pry
     end
 end
